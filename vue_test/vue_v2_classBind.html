@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    body > div { margin: 10px 0 }
+  </style>
+</head>
+<body>
+  <h1> Vue Template test</h1>
+
+  <h2>클래스 바인딩</h2>
+  <div id="class1" v-bind:class="classObject"></div>
+  <div id="class2" v-bind:class="[ {active : isActive}, errorClass]"></div>
+  
+  <div id="class3">
+      <my-component class="baz boo" v-bind:class="{ active : isActive }"></my-component>
+  </div>
+
+  <h2>스타일 바인딩</h2>
+  <div id="style1" v-bind:style=" {color : activeColor, fontSize : fontSize + 'px'} ">style</div>
+  <div id="style2" v-bind:style="styleObject">style</div>
+  <div id="style3" v-bind:style="[styleObject,baseStyleObject]">style</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
+  <script src="vue_classBinding.js"></script>
+</body>
+</html>

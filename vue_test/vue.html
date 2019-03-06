@@ -10,143 +10,56 @@
   </style>
 </head>
 <body>
-  <h1> Vue test</h1>
-
-  <h2>1</h2>
+  <h1> Vue Template test</h1>
+  <h2>v-if</h2>
   <div id="app">
-    {{ message }}
-  </div>  
-  <div id="app-2">
-    <span v-bind:title="message">
-      내 위에 잠시 마우스를 올리면 동적으로 바인딩 된 title을 볼 수 있습니다.
-    </span>
+      <h3 v-if="ok">yes</h3>
+      <h3 v-else>no</h3>    
   </div>
-  <div id="app-3">
-    <p v-if="seen">이제 나를 볼 수 있어요 true/ false </p>
+  <div id="app2">
+      <template v-if="ok">
+        <h1>title</h1>
+        <p>p1</p>
+      </template>
   </div>
-
-  <div id="app-4">
-    <ol>
-      <li v-for="todo in todos">
-        {{ todo.text }}
-      </li>
-    </ol>
+  <div id="app3">
+      <div v-if="value > 0.5">
+        이제 나를 볼 수 있어요
+      </div>
+      <div v-else>
+        이제는 안보입니다
+      </div>
   </div>
-
-  <div id="app-5">
-    <p>{{ message }}</p>
-    <button v-on:click="reverseMessage">메세지 뒤집기</button>
+  <div id="app4">
+      <div v-if="type === 'A'">
+       A
+      </div>
+      <div v-else-if="type === 'B'">
+       B
+      </div>
+      <div v-else="type === 'C'">
+       C
+      </div>
   </div>
-
-  <div id="app-6">
-    <p>{{ message }}</p>
-    <input type="text" v-model="message">
-  </div>
-
-  <div id="app-7">
-    <strong>{{ title }}</strong>
-    <ol>
-        <todo-item 
-          v-for="item in groceryList"
-          v-bind:todo ='item'
-          v-bind:key = 'item.id'
-        ></todo-item>
-    </ol>
-  </div>
-
-  <h2>2</h2>
-  <div id="vm_id">{{ data.a }}</div>
-  <div id="vm_id2">
-    <p>{{ obj.foo }}</p>  
-    <button type="button" v-on:click="foo = 'baz'">change it</button>
-  </div>
-  <div id="vm_id3">
-    <p>{{ data2.a }}</p>  
-    <button type="button" v-on:click="a = 2">change it</button>
+  <div id="app5">
+      <template v-if="loginType === 'username'">
+        <label>사용자 이름</label>
+        <input placeholder="사용자 이름을 입력하세요">
+      </template>
+      <template v-else>
+        <label>이메일</label>
+        <input placeholder="이메일 주소를 입력하세요">
+      </template>
+      <button v-on:click="change" type="button">로그인 유형 변경</button>
   </div>
 
-  <h2>3 life cycle hook</h2>
-  <div id="lf1">
-    {{ a }}
+  <div id="app6">
+    <h3 v-show="ok">안농?!</h3>
   </div>
+
 
   <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-  <script> 
-    // normal data binding
-    var app = new Vue({
-      el : '#app',
-      data : {
-        message : '안녕하세요'
-      }
-    })
-    // v-bind : hover-message 
-    var app2 = new Vue({
-      el : "#app-2",
-      data : {
-        message : '이 페이지는 ' + new Date() + ' 에 로드 되었습니다'
-      }
-    })
-    // v-if  when seen is false, this component's child change to 주석
-    var app3 = new Vue({
-      el : '#app-3',
-      data : {
-        seen : true
-      }
-    })
-    // v-for , Try to input 'app4.todos.push({ text:'New item'}) in your console!
-    var app4 = new Vue({
-      el : '#app-4',
-      data : {
-        todos : [
-          {text : 'javaScript 배우기 '},
-          {text : 'vue 배우기 '},
-          {text : '무엇인가 멋진것을 배우고 싶어 '}
-        ]
-      }
-    })
-    // For user interaction you should use 'v-on' directive
-    // 단순 DOM 컨트롤이 아닌 앱 상태 업데이트 
-    var app5 = new Vue({
-      el: '#app-5',
-      data : {
-        message : '안녕하세요! Vue.js!',
-      },
-      methods : {
-        reverseMessage : function(){
-          this.message = this.message.split('').reverse().join('')
-        }
-      }
-    })
-    // 양방향 바인딩 v-model 
-    var app6 = new Vue({
-      el : '#app-6',
-      data : {
-        message:'안녕하세요 Vue'
-      }
-    })
-
-    // using component
-    // gloval template regist 
-    // component need root elem 
-    // use props 
-    Vue.component('todo-item', {
-      props : ['todo'],
-      template : '<li> {{ todo.text }} </li>'
-    })
-    var app7 = new Vue({
-      el : '#app-7',
-      data : {
-        title : 'vue g-template',
-        groceryList : [
-          { id: 0, text : 'Vegetables' },
-          { id: 1, text : 'Cheese' },
-          { id: 2, text : 'whatever else humans are supposed to eat' },
-        ]
-
-      }
-    })
-  </script>
-  <script src="./vue_instance.js"></script>
-  <script src="./vue_lifecycle.js"></script>
+  <script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
+  <script src="vue_condition_render.js"></script>
 </body>
 </html>

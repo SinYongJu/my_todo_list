@@ -21,3 +21,5 @@ var vm_lf1 = new Vue({
     console.log('destroyed', this.a)
   }
 })
+
+// 추후 보완
