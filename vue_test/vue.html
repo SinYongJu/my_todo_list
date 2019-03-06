@@ -10,6 +10,9 @@
   </style>
 </head>
 <body>
+  <h1> Vue test</h1>
+
+  <h2>1</h2>
   <div id="app">
     {{ message }}
   </div>  
@@ -49,6 +52,17 @@
           v-bind:key = 'item.id'
         ></todo-item>
     </ol>
+  </div>
+
+  <h2>2</h2>
+  <div id="vm_id">{{ data.a }}</div>
+  <div id="vm_id2">
+    <p>{{ obj.foo }}</p>  
+    <button type="button" v-on:click="foo = 'baz'">change it</button>
+  </div>
+  <div id="vm_id3">
+    <p>{{ data2.a }}</p>  
+    <button type="button" v-on:click="a = 2">change it</button>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/vue"></script>
@@ -127,5 +141,6 @@
       }
     })
   </script>
+  <script src="./vue_instance.js"></script>
 </body>
 </html>
