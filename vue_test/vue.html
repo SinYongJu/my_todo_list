@@ -11,55 +11,83 @@
 </head>
 <body>
   <h1> Vue Template test</h1>
-  <h2>v-if</h2>
-  <div id="app">
-      <h3 v-if="ok">yes</h3>
-      <h3 v-else>no</h3>    
-  </div>
-  <div id="app2">
-      <template v-if="ok">
-        <h1>title</h1>
-        <p>p1</p>
-      </template>
-  </div>
-  <div id="app3">
-      <div v-if="value > 0.5">
-        이제 나를 볼 수 있어요
-      </div>
-      <div v-else>
-        이제는 안보입니다
-      </div>
-  </div>
-  <div id="app4">
-      <div v-if="type === 'A'">
-       A
-      </div>
-      <div v-else-if="type === 'B'">
-       B
-      </div>
-      <div v-else="type === 'C'">
-       C
-      </div>
-  </div>
-  <div id="app5">
-      <template v-if="loginType === 'username'">
-        <label>사용자 이름</label>
-        <input placeholder="사용자 이름을 입력하세요">
-      </template>
-      <template v-else>
-        <label>이메일</label>
-        <input placeholder="이메일 주소를 입력하세요">
-      </template>
-      <button v-on:click="change" type="button">로그인 유형 변경</button>
-  </div>
+  <h2>v-for</h2>
+  <ul id="example-1">
+    <li v-for="item in items">
+      {{ item.message }}
+    </li>
+  </ul>
+  <h2>v-for of</h2>
+  <ul id="example-2">
+    <li v-for="(item, index) of items">
+      {{ parentMessage }} - {{ index }} - {{ item.message }}
+    </li>
+  </ul>
+  <h2>v-for obj</h2>
+  <ul id="example-3" class="demo">
+    <li v-for="(value,key,index) in object">
+     {{ index }} . {{ key }} : {{ value }}
+    </li>
+  </ul>
+  <h2>v-for obj key</h2>
+  <p>key 는 Vue가 노드를 식별하는 일반적 메커니즘 v-for과 연관 없</p>
+  <ul id="example-4" class="demo">
+    <li v-for="item in items" :key="item.id">
+     {{ item }}
+    </li>
+  </ul>
+  <h2>watching array change</h2>
+  <p>key 는 Vue가 노드를 식별하는 일반적 메커니즘 v-for과 연관 없</p>
+  <ul id="example-5" class="demo">
+    <li v-for="item in items" :key="item.id">
+     {{ item }}
+    </li>
+  </ul>
 
-  <div id="app6">
-    <h3 v-show="ok">안농?!</h3>
+  <h2>watching object change</h2>
+  <div id="example-6">
+    {{ userProfile.name }} {{ userProfile.age }} 
+  </div>
+  <h2>filter and sort</h2>
+  <div id="example-7">
+    <ul>
+        <!-- <li v-for="n in evenNumbers">{{ n }}</li> -->
+        <li v-for="n in even(numbers)">{{ n }}</li>
+    </ul>
+  </div>
+  <h2>Range v-for</h2>
+  <div id="example-8">
+    <span v-for="n in 10"> {{ n }} </span>
+  </div>
+  <h2>V-for Template</h2>
+  <div id="example-9">
+    <template v-for="item in items">
+      <li>{{ item.msg }}</li>
+      <li class="divider"></li>
+    </template>
+    <hr>
+    <li v-for="item in items" v-if="!item.isComplete">{{ item.msg }}</li>
+  </div>
+  <div id="example-10">
+    <input type="text"
+    v-model="newTodoText"
+    v-on:keyup.enter="addNewTodo"
+    placeholder="Add a todo"
+    >
+    <ul>
+      <li
+        is="todo-item"
+        v-for="(todo, index) in todos"
+        v-bind:key="todo.id"
+        v-bind:title="todo.title"
+        v-on:remove="todos.splice(index, 1)"
+      ></li>
+    </ul>
   </div>
 
 
   <script src="https://cdn.jsdelivr.net/npm/vue"></script>
   <script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
-  <script src="vue_condition_render.js"></script>
+  <script src="vue_list_render.js"></script>
 </body>
 </html>
